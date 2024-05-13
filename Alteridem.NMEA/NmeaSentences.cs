@@ -12,7 +12,7 @@ public static class NmeaSentences
     private static readonly Dictionary<string, Type> _sentences = new Dictionary<string, Type>
     {
         { "GGA", typeof(GgaSentence) },
-        { "GLL", typeof(UnknownSentence) },
+        { "GLL", typeof(GllSentence) },
         { "GSA", typeof(UnknownSentence) },
         { "GSV", typeof(UnknownSentence) },
         { "RMC", typeof(UnknownSentence) },

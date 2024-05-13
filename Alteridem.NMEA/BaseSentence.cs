@@ -4,11 +4,11 @@ namespace Alteridem.NMEA;
 
 public abstract class BaseSentence
 {
-    public string Sentence { get; set; }
-    public string TalkerId { get; set; } = "UN";
-    public string SentenceId { get; set; } = "UNK";
-    public byte Checksum { get; set; } = 0x00;
-    public string[] Fields { get; set; }
+    public string Sentence { get; }
+    public string TalkerId { get; } = "UN";
+    public string SentenceId { get; } = "UNK";
+    public byte Checksum { get; } = 0x00;
+    public string[] Fields { get; }
 
     public abstract string Description { get; }
 

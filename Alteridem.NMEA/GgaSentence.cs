@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Alteridem.NMEA.Extensions;
 using Alteridem.NMEA.Gis;
 
@@ -29,34 +29,34 @@ public class GgaSentence : BaseSentence
 
     public override string Description => "Global Positioning System Fix Data";
 
-    public DateTimeOffset Time { get; set; }
+    public DateTimeOffset Time { get; }
 
-    public Latitude Latitude { get; set; }
+    public Latitude Latitude { get; }
 
-    public Longitude Longitude { get; set; }
+    public Longitude Longitude { get; }
 
     /// <summary>
     /// GPS Quality Indicator (non null)
     /// </summary>
-    public GpsQuality Quality { get; set; }
+    public GpsQuality Quality { get; }
 
     /// <summary>
     /// Number of satellites in use
     /// </summary>
-    public int Satellites { get; set; }
+    public int Satellites { get; }
 
     /// <summary>
     /// Horizontal Dilution of precision (meters)
     /// </summary>
-    public double HorizontalDilution { get; set; }
+    public double HorizontalDilution { get; }
 
     /// <summary>
     /// Antenna Altitude above/below mean-sea-level (geoid) (in meters)
     /// </summary>
-    public double Altitude { get; set; }
+    public double Altitude { get; }
 
     /// <summary>
     /// Geoidal separation in meters, the difference between the WGS-84 earth ellipsoid and mean-sea-level (geoid), "-" means mean-sea-level below ellipsoid
     /// </summary>
-    public double GeoidalSeparation { get; set; }
+    public double GeoidalSeparation { get; }
 }

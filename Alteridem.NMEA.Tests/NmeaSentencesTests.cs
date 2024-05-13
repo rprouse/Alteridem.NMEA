@@ -35,4 +35,19 @@ public class NmeaSentencesTests
         gga.Altitude.Should().Be(131.2);
         gga.GeoidalSeparation.Should().Be(-35.9);
     }
+
+    [Test]
+    public void CanParseGllSentence()
+    {
+        var sentence = "$GPGLL,4314.72223,N,07956.69578,W,202224.00,A,D*76";
+        var nmea = NmeaSentences.Parse(sentence);
+        nmea.Should().BeOfType<GllSentence>();
+
+        var now = DateTimeOffset.Now;
+        var gll = nmea as GllSentence;
+        gll.Latitude.Value.Should().BeApproximately(43.2453705, 0.0000001);
+        gll.Longitude.Value.Should().BeApproximately(-79.9449296667, 0.0000001);
+        gll.Time.Should().Be(new DateTimeOffset(now.Year, now.Month, now.Day, 20, 22, 24, TimeSpan.Zero));
+        gll.Status.Should().Be(Status.DataValid);
+    }
 }
