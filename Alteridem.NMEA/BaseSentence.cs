@@ -27,7 +27,7 @@ public abstract class BaseSentence
         }
 
         // Split the sentence into the constituent fields
-        Fields = sentence.Split(',');
+        Fields = Sentence.Split(',');
 
         // Extract the Talker ID and Sentence ID
         if (Fields.Length > 0 && Fields[0].Length >= 7)

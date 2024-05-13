@@ -32,6 +32,19 @@ public class LatitudeTests
         a.NorthSouth.Should().Be(NS.North);
     }
 
+    [TestCase("", "", 0.0)]
+    [TestCase("8000.00", "N", 80.0)]
+    [TestCase("8030.00", "N", 80.5)]
+    [TestCase("8030.60", "N", 80.51)]
+    [TestCase("8000.00", "S", -80.0)]
+    [TestCase("8030.00", "S", -80.5)]
+    [TestCase("8030.60", "S", -80.51)]
+    public void TestStringConstructor(string value, string ns, double expected)
+    {
+        Latitude a = new(value, ns);
+        a.Value.Should().Be(expected);
+    }
+
     [Test]
     public void TestDegreesConstructor()
     {

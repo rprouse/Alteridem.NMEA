@@ -7,6 +7,23 @@ public enum EW { East, West };
 public class Longitude : Angle
 {
     public Longitude() : base() { }
+
+    /// <summary>
+    /// Create a longitude from a string in the format ddmm.mm
+    /// </summary>
+    /// <param name="ddmm"></param>
+    public Longitude(string ddmm, string ew)
+    {
+        if (ddmm.Length >= 7 && ddmm[5] == '.' &&
+            uint.TryParse(ddmm.Substring(0, 3), out uint dd) &&
+            double.TryParse(ddmm.Substring(3), out double mm))
+        {
+            Set(dd, mm);
+        }
+
+        EastWest = ew == "W" ? EW.West : EW.East;
+    }
+
     public Longitude(double Degrees) : base(Degrees) { }
     public Longitude(uint Degrees, double minutes) : base(Degrees, minutes) { }
     public Longitude(uint Degrees, uint minutes, double seconds) : base(Degrees, minutes, seconds) { }

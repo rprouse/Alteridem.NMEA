@@ -5,7 +5,13 @@ public class NmeaSentencesTests
     [TestCase("")]
     [TestCase("$LCFSI,123456,789012,1,7*21")]
     [TestCase("GPTXT,01,01,02,u-blox ag - www.u-blox.com*50")]
-    public void UnknownSentencesReturnUnknownSentence(string sentence)
+    [TestCase("$GPGGA,202224.00*23")]
+    [TestCase("$GPGLL,202224.00*23")]
+    [TestCase("$GPGSA,202224.00*23")]
+    [TestCase("$GPGSV,202224.00*23")]
+    [TestCase("$GPRMC,202224.00*23")]
+    [TestCase("$GPVTG,202224.00*23")]
+    public void InvalidOrUnknownSentencesReturnUnknownSentence(string sentence)
     {
         var nmea = NmeaSentences.Parse(sentence);
         nmea.Should().BeOfType<UnknownSentence>();
@@ -21,5 +27,12 @@ public class NmeaSentencesTests
         var now = DateTimeOffset.Now;
         var gga = nmea as GgaSentence;
         gga.Time.Should().Be(new DateTimeOffset(now.Year, now.Month, now.Day, 20, 22, 24, TimeSpan.Zero));
+        gga.Latitude.Value.Should().BeApproximately(43.2453705, 0.0000001);
+        gga.Longitude.Value.Should().BeApproximately(-79.9449296667, 0.0000001);
+        gga.Quality.Should().Be(GpsQuality.DifferentialGPSFix);
+        gga.Satellites.Should().Be(8);
+        gga.HorizontalDilution.Should().Be(1.32);
+        gga.Altitude.Should().Be(131.2);
+        gga.GeoidalSeparation.Should().Be(-35.9);
     }
 }

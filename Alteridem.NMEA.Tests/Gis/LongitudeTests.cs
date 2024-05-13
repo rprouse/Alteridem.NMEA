@@ -32,6 +32,19 @@ public class LongitudeTests
         a.EastWest.Should().Be(EW.West);
     }
 
+    [TestCase("", "", 0.0)]
+    [TestCase("12000.00", "E", 120.0)]
+    [TestCase("12030.00", "E", 120.5)]
+    [TestCase("12030.60", "E", 120.51)]
+    [TestCase("12000.00", "W", -120.0)]
+    [TestCase("12030.00", "W", -120.5)]
+    [TestCase("12030.60", "W", -120.51)]
+    public void TestStringConstructor(string value, string ns, double expected)
+    {
+        Longitude a = new(value, ns);
+        a.Value.Should().Be(expected);
+    }
+
     [Test]
     public void TestDegreesConstructor()
     {

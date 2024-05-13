@@ -25,6 +25,28 @@ public class StringExtenionTests
         value.ParseByte().Should().Be(expected);
     }
 
+    [TestCase("", 0)]
+    [TestCase("a", 0)]
+    [TestCase("0", 0)]
+    [TestCase("1", 1)]
+    [TestCase("10", 10)]
+    public void CanParseInt(string value, int expected)
+    {
+        value.ParseInt().Should().Be(expected);
+    }
+
+    [TestCase("", 0.0)]
+    [TestCase("a", 0.0)]
+    [TestCase("0", 0.0)]
+    [TestCase("1", 1.0)]
+    [TestCase("10", 10.0)]
+    [TestCase("10.1", 10.1)]
+    [TestCase("10.10", 10.1)]
+    public void CanParseDouble(string value, double expected)
+    {
+        value.ParseDouble().Should().Be(expected);
+    }
+
     [Test]
     public void CanParseTime()
     {

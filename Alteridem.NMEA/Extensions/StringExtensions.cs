@@ -19,6 +19,32 @@ public static class StringExtensions
     }
 
     /// <summary>
+    /// Parse a string to an integer value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="defaultValue"></param>
+    /// <returns></returns>
+    public static int ParseInt(this string value, int defaultValue = 0)
+    {
+        if (int.TryParse(value, out int result))
+            return result;
+        return defaultValue;
+    }
+
+    /// <summary>
+    /// Parse a string to a double value
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="defaultValue"></param>
+    /// <returns></returns>
+    public static double ParseDouble(this string value, double defaultValue = 0)
+    {
+        if (double.TryParse(value, out double result))
+            return result;
+        return defaultValue;
+    }
+
+    /// <summary>
     /// Parse a string in the format hhmmss.ss to a DateTimeOffset value with today's date.
     /// </summary>
     /// <param name="value"></param>
