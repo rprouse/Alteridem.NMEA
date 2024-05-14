@@ -1,6 +1,6 @@
 using Alteridem.NMEA.Extensions;
 
-namespace Alteridem.NMEA;
+namespace Alteridem.NMEA.Sentences;
 
 public abstract class BaseSentence
 {

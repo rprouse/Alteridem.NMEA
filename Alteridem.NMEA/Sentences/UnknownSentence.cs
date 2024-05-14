@@ -1,4 +1,4 @@
-namespace Alteridem.NMEA;
+namespace Alteridem.NMEA.Sentences;
 
 /// <summary>
 /// Unknown sentence type

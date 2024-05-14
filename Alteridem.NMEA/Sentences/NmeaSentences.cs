@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Alteridem.NMEA;
+namespace Alteridem.NMEA.Sentences;
 
 /// <summary>
 /// The NMEA Sentences that are supported by this library

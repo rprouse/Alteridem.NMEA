@@ -2,7 +2,7 @@ using System;
 using Alteridem.NMEA.Extensions;
 using Alteridem.NMEA.Gis;
 
-namespace Alteridem.NMEA;
+namespace Alteridem.NMEA.Sentences;
 
 /// <summary>
 /// Time, Position and fix related data for a GPS receiver.

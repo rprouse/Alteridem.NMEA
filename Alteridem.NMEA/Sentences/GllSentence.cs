@@ -2,14 +2,14 @@ using System;
 using Alteridem.NMEA.Extensions;
 using Alteridem.NMEA.Gis;
 
-namespace Alteridem.NMEA;
+namespace Alteridem.NMEA.Sentences;
 
 /// <summary>
 /// https://gpsd.gitlab.io/gpsd/NMEA.html#_gll_geographic_position_latitudelongitude
 /// </summary>
 public class GllSentence : BaseSentence
 {
-    public GllSentence(string sentence) : base(sentence) 
+    public GllSentence(string sentence) : base(sentence)
     {
         if (Fields.Length != 7 && Fields.Length != 8)
             throw new InvalidNmeaSentenceException(sentence);

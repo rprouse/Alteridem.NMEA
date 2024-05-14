@@ -1,5 +1,5 @@
 using System.IO.Ports;
-using Alteridem.NMEA;
+using Alteridem.NMEA.Sentences;
 
 SerialPort com = new ("COM10");
 

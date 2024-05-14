@@ -3,7 +3,7 @@ using System.Linq;
 using Alteridem.NMEA.Extensions;
 using Alteridem.NMEA.Gis;
 
-namespace Alteridem.NMEA;
+namespace Alteridem.NMEA.Sentences;
 
 /// <summary>
 /// https://gpsd.gitlab.io/gpsd/NMEA.html#_rmc_recommended_minimum_navigation_information

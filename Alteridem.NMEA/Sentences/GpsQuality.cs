@@ -1,4 +1,4 @@
-﻿namespace Alteridem.NMEA;
+﻿namespace Alteridem.NMEA.Sentences;
 
 public enum GpsQuality
 {

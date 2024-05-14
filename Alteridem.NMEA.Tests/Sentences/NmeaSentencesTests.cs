@@ -1,4 +1,6 @@
-namespace Alteridem.NMEA.Tests;
+using Alteridem.NMEA.Sentences;
+
+namespace Alteridem.NMEA.Tests.Sentences;
 
 public class NmeaSentencesTests
 {

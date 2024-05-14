@@ -1,12 +1,12 @@
 ﻿using Alteridem.NMEA.Extensions;
 using Alteridem.NMEA.Gis;
 
-namespace Alteridem.NMEA;
+namespace Alteridem.NMEA.Sentences;
 
 /// <summary>
 /// https://gpsd.gitlab.io/gpsd/NMEA.html#_vtg_track_made_good_and_ground_speed
 /// </summary>
-public class  VtgSentence : BaseSentence
+public class VtgSentence : BaseSentence
 {
     public VtgSentence(string sentence) : base(sentence)
     {

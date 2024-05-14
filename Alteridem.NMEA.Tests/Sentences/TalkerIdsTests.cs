@@ -1,9 +1,11 @@
-namespace Alteridem.NMEA.Tests
+using Alteridem.NMEA.Sentences;
+
+namespace Alteridem.NMEA.Tests.Sentences
 {
     public class TalkerIdsTests
     {
         TalkerIds _talkerIds;
-        
+
         [SetUp]
         public void Setup()
         {

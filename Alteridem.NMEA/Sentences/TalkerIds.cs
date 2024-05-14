@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Alteridem.NMEA;
+namespace Alteridem.NMEA.Sentences;
 
 /// <summary>
 /// A two-character prefix to an NMEA sentence that identifies the type of the transmitting unit. 
