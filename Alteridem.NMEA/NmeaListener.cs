@@ -17,11 +17,13 @@ public class NmeaListener(string port, int baud = 9600)
     public delegate void ErrorHandler(object sender, ErrorEventArgs args);
     public delegate void PositionChangedHandler(object sender, PositionEventArgs args);
     public delegate void AltitudeChangedHandler(object sender, AltitudeEventArgs args);
+    public delegate void TimeChangedHandler(object sender, TimeEventArgs args);
 
     // Events
     public event ErrorHandler? Error;
     public event PositionChangedHandler? PositionChanged;
     public event AltitudeChangedHandler? AltitudeChanged;
+    public event TimeChangedHandler? TimeChanged;
 
     public void Start() => 
         Task.Run(BackgroundListener);
@@ -80,6 +82,7 @@ public class NmeaListener(string port, int baud = 9600)
                     break;
 
                 OnPositionChanged(gga.Latitude, gga.Longitude);
+                OnTimeChanged(gga.Time);
 
                 if (gga.Altitude != 0)
                     OnAltitudeChanged(gga.Altitude);
@@ -90,6 +93,7 @@ public class NmeaListener(string port, int baud = 9600)
                     break;
 
                 OnPositionChanged(gll.Latitude, gll.Longitude);
+                OnTimeChanged(gll.Time);
                 break;
             case RmcSentence rmc:
                 if (rmc.Latitude.Value == 0 || rmc.Longitude.Value == 0)
@@ -115,5 +119,10 @@ public class NmeaListener(string port, int baud = 9600)
     private void OnAltitudeChanged(double altitude)
     {
         AltitudeChanged?.Invoke(this, new AltitudeEventArgs(altitude));
+    }
+
+    private void OnTimeChanged(DateTimeOffset time)
+    {
+        TimeChanged?.Invoke(this, new TimeEventArgs(time));
     }
 }
