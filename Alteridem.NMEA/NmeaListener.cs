@@ -16,10 +16,12 @@ public class NmeaListener(string port, int baud = 9600)
     // Delegates for events
     public delegate void ErrorHandler(object sender, ErrorEventArgs args);
     public delegate void PositionChangedHandler(object sender, PositionEventArgs args);
+    public delegate void AltitudeChangedHandler(object sender, AltitudeEventArgs args);
 
     // Events
     public event ErrorHandler? Error;
     public event PositionChangedHandler? PositionChanged;
+    public event AltitudeChangedHandler? AltitudeChanged;
 
     public void Start() => 
         Task.Run(BackgroundListener);
@@ -78,12 +80,16 @@ public class NmeaListener(string port, int baud = 9600)
                     break;
 
                 OnPositionChanged(gga.Latitude, gga.Longitude);
+
+                if (gga.Altitude != 0)
+                    OnAltitudeChanged(gga.Altitude);
+
                 break;
-            case GllSentence ggl:
-                if (ggl.Status == Status.Invalid || ggl.Latitude.Value == 0 || ggl.Longitude.Value == 0)
+            case GllSentence gll:
+                if (gll.Status == Status.Invalid || gll.Latitude.Value == 0 || gll.Longitude.Value == 0)
                     break;
 
-                OnPositionChanged(ggl.Latitude, ggl.Longitude);
+                OnPositionChanged(gll.Latitude, gll.Longitude);
                 break;
             case RmcSentence rmc:
                 if (rmc.Latitude.Value == 0 || rmc.Longitude.Value == 0)
@@ -104,5 +110,10 @@ public class NmeaListener(string port, int baud = 9600)
     private void OnPositionChanged(Latitude latitude, Longitude longitude)
     {
         PositionChanged?.Invoke(this, new PositionEventArgs(latitude, longitude));
+    }
+
+    private void OnAltitudeChanged(double altitude)
+    {
+        AltitudeChanged?.Invoke(this, new AltitudeEventArgs(altitude));
     }
 }

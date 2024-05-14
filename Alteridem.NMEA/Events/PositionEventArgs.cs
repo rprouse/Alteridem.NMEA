@@ -1,16 +1,10 @@
-﻿using System;
+using System;
 using Alteridem.NMEA.Gis;
 
 namespace Alteridem.NMEA.Events;
 
-public class PositionEventArgs : EventArgs
+public class PositionEventArgs(Latitude latitude, Longitude longitude) : EventArgs
 {
-    public PositionEventArgs(Latitude latitude, Longitude longitude)
-    {
-        Latitude = latitude;
-        Longitude = longitude;
-    }
-
-    public Latitude Latitude { get; }
-    public Longitude Longitude { get; }
+    public Latitude Latitude { get; } = latitude;
+    public Longitude Longitude { get; } = longitude;
 }
