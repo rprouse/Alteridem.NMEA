@@ -8,10 +8,10 @@ public class AngleTests
     public void TestToString()
     {
         Angle a = new Angle();
-        a.ToString().Should().Be("0° 0' 0.000\"");
+        a.ToString().Should().Be("0° 0.00000'\"");
     }
 
-    [TestCase(AngleFormat.Default, "0° 0' 0.000\"")]
+    [TestCase(AngleFormat.Default, "0° 0.00000'\"")]
     [TestCase(AngleFormat.Degrees, "0°")]
     [TestCase(AngleFormat.DegreesDecimal, "0.0000000°")]
     [TestCase(AngleFormat.Minutes, "0° 0'")]

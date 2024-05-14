@@ -129,14 +129,14 @@ public class Angle
                 return $"{Degrees:F7}°";
             case AngleFormat.Minutes:
                 return $"{WholeDegrees}° {WholeMinutes}'";
-            case AngleFormat.MinutesDecimal:
-                return $"{WholeDegrees}° {Minutes:F5}'";
             case AngleFormat.Seconds:
                 return $"{WholeDegrees}° {WholeMinutes}' {WholeSeconds}\"";
             case AngleFormat.SecondsDecimal:
+                return $"{WholeDegrees}° {WholeMinutes}' {Seconds:F3}\"";
+            case AngleFormat.MinutesDecimal:
             case AngleFormat.Default:
             default:
-                return $"{WholeDegrees}° {WholeMinutes}' {Seconds:F3}\"";
+                return $"{WholeDegrees}° {Minutes:F5}'";
         }
     }
 

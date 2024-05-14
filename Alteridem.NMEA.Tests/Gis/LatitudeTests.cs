@@ -8,10 +8,10 @@ public class LatitudeTests
     public void TestToString()
     {
         Latitude a = new ();
-        a.ToString().Should().Be("0° 0' 0.000\" N");
+        a.ToString().Should().Be("0° 0.00000' N");
     }
 
-    [TestCase(AngleFormat.Default, "0° 0' 0.000\" N")]
+    [TestCase(AngleFormat.Default, "0° 0.00000' N")]
     [TestCase(AngleFormat.Degrees, "0° N")]
     [TestCase(AngleFormat.DegreesDecimal, "0.0000000° N")]
     [TestCase(AngleFormat.Minutes, "0° 0' N")]
@@ -153,8 +153,8 @@ public class LatitudeTests
         b.NorthSouth.Should().Be(NS.North);
     }
 
-    [TestCase(45.0, NS.North, "45° 0' 0.000\" N")]
-    [TestCase(-45.0, NS.South, "45° 0' 0.000\" S")]
+    [TestCase(45.0, NS.North, "45° 0.00000' N")]
+    [TestCase(-45.0, NS.South, "45° 0.00000' S")]
     public void TestNorthSouth(double degrees, NS ns, string expected)
     {
         Latitude a = new (degrees);

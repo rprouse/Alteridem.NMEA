@@ -8,10 +8,10 @@ public class LongitudeTests
     public void TestToString()
     {
         Longitude a = new ();
-        a.ToString().Should().Be("0° 0' 0.000\" W");
+        a.ToString().Should().Be("0° 0.00000' W");
     }
 
-    [TestCase(AngleFormat.Default, "0° 0' 0.000\" W")]
+    [TestCase(AngleFormat.Default, "0° 0.00000' W")]
     [TestCase(AngleFormat.Degrees, "0° W")]
     [TestCase(AngleFormat.DegreesDecimal, "0.0000000° W")]
     [TestCase(AngleFormat.Minutes, "0° 0' W")]
@@ -152,8 +152,8 @@ public class LongitudeTests
         b.EastWest.Should().Be(EW.West);
     }
 
-    [TestCase(145.0, EW.East, "145° 0' 0.000\" E")]
-    [TestCase(-145.0, EW.West, "145° 0' 0.000\" W")]
+    [TestCase(145.0, EW.East, "145° 0.00000' E")]
+    [TestCase(-145.0, EW.West, "145° 0.00000' W")]
     public void TestEastWest(double degrees, EW EW, string expected)
     {
         Longitude a = new(degrees);

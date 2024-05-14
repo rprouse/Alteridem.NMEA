@@ -1,34 +1,34 @@
-using System.IO.Ports;
-using Alteridem.NMEA.Sentences;
+using Alteridem.NMEA;
+using Spectre.Console;
 
-SerialPort com = new ("COM10");
+AnsiConsole.Clear();
+AnsiConsole.Cursor.SetPosition(0, 4);
+AnsiConsole.MarkupLine("[yellow]<ESC> to quit[/]");
+AnsiConsole.Cursor.Hide();
 
-com.BaudRate = 9600;
-com.DataBits = 8;
-com.Parity = Parity.None;
-com.StopBits = StopBits.One;
-com.Handshake = Handshake.None;
+NmeaListener listener = new("COM10");
 
-// Set the read/write timeouts
-com.ReadTimeout = 5000;    // Timeout for read operations in milliseconds
-com.WriteTimeout = 1000;    // Timeout for write operations in milliseconds
-com.Open();
-
-try
+listener.PositionChanged += (sender, args) =>
 {
-    do
+    AnsiConsole.Cursor.SetPosition(0, 0);
+    AnsiConsole.MarkupLine($"[cyan]Position:[/] [green]{args.Latitude}, {args.Longitude}[/]");
+    AnsiConsole.Cursor.Hide();
+};
+
+listener.Error += (sender, args) =>
+{
+    AnsiConsole.Cursor.SetPosition(0, 3);
+    AnsiConsole.MarkupLine($"[red]Error: {args.Message}[/]");
+    AnsiConsole.Cursor.Hide();
+};
+
+listener.Start();
+
+while (true)
+{
+    if (Console.ReadKey().Key == ConsoleKey.Escape)
     {
-        string data = com.ReadLine();
-        var nmea = NmeaSentences.Parse(data);
-        if (nmea?.GetType() == typeof(UnknownSentence))
-            continue;
-
-        Console.WriteLine(nmea);
-    } while (true);
+        listener.Stop();
+        break;
+    }
 }
-catch (TimeoutException)
-{
-    Console.WriteLine("Read timeout occurred");
-}
-
-com.Close();
