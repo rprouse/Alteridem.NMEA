@@ -1,4 +1,4 @@
-﻿namespace Alteridem.NMEA;
+namespace Alteridem.NMEA;
 
 /// <summary>
 /// Unknown sentence type
@@ -8,4 +8,6 @@ public class UnknownSentence : BaseSentence
     public override string Description => "Unknown Sentence";
 
     public UnknownSentence(string sentence) : base(sentence) { }
+
+    public override string ToString() => $"UNK: {Sentence}";
 }

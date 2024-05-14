@@ -30,7 +30,7 @@ public abstract class BaseSentence
         Fields = Sentence.Split(',');
 
         // Extract the Talker ID and Sentence ID
-        if (Fields.Length > 0 && Fields[0].Length >= 7)
+        if (Fields.Length > 0 && Fields[0].Length >= 6)
         {
             TalkerId = Fields[0].Substring(1, 2);
             SentenceId = Fields[0].Substring(3);

@@ -59,4 +59,6 @@ public class GgaSentence : BaseSentence
     /// Geoidal separation in meters, the difference between the WGS-84 earth ellipsoid and mean-sea-level (geoid), "-" means mean-sea-level below ellipsoid
     /// </summary>
     public double GeoidalSeparation { get; }
+
+    public override string ToString() => $"GGA: {Time:HH:mm:ss} {Latitude} {Longitude} {Quality} {Satellites} {HorizontalDilution} {Altitude} {GeoidalSeparation}";
 }

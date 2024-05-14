@@ -1,7 +1,8 @@
-﻿namespace Alteridem.NMEA;
+namespace Alteridem.NMEA;
 
 public enum Status
 {
-    DataValid,
-    DataInvalid
+    Invalid,
+    Valid,
+    Warning
 }

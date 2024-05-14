@@ -67,4 +67,19 @@ public static class StringExtensions
         var now = DateTimeOffset.Now;
         return new DateTimeOffset(now.Year, now.Month, now.Day, hour, min, sec, fs * 10, TimeSpan.Zero);
     }
+
+    public static DateOnly ParseAsDate(this string value)
+    {
+        int day = 0, month = 0, year = 0;
+        if (value is null ||
+            value.Length != 6 ||
+            !int.TryParse(value.Substring(0, 2), out day) ||
+            !int.TryParse(value.Substring(2, 2), out month) ||
+            !int.TryParse(value.Substring(4, 2), out year) ||
+            day <= 0 || day > 31 || month <= 0 | month > 12 || year > 99)
+        {
+            return DateOnly.MinValue;
+        }
+        return new DateOnly(year + 2000, month, day);
+    }
 }

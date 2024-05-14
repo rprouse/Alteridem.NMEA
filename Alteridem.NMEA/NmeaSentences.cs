@@ -15,9 +15,9 @@ public static class NmeaSentences
         { "GLL", typeof(GllSentence) },
         { "GSA", typeof(UnknownSentence) },
         { "GSV", typeof(UnknownSentence) },
-        { "RMC", typeof(UnknownSentence) },
+        { "RMC", typeof(RmcSentence) },
         { "TXT", typeof(UnknownSentence) },
-        { "VTG", typeof(UnknownSentence) },
+        { "VTG", typeof(VtgSentence) },
     };
 
     public static BaseSentence? Parse(string sentence)

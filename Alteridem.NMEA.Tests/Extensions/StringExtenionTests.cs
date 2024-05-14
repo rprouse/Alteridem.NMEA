@@ -64,4 +64,22 @@ public class StringExtenionTests
     {
         time.ParseAsUtcTime().Should().Be(DateTimeOffset.MinValue);
     }
+
+    [Test]
+    public void CanParseDate()
+    {
+        var date = "090723";
+        var expected = new DateOnly(2023, 07, 09);
+        date.ParseAsDate().Should().Be(expected);
+    }
+
+    [TestCase("")]
+    [TestCase("923")]
+    [TestCase("123456789")]
+    [TestCase("999999.99")]
+    [TestCase("abcdef.gh")]
+    public void InvalidDateReturnsMinValue(string date)
+    {
+        date.ParseAsDate().Should().Be(DateOnly.MinValue);
+    }
 }

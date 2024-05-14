@@ -48,6 +48,36 @@ public class NmeaSentencesTests
         gll.Latitude.Value.Should().BeApproximately(43.2453705, 0.0000001);
         gll.Longitude.Value.Should().BeApproximately(-79.9449296667, 0.0000001);
         gll.Time.Should().Be(new DateTimeOffset(now.Year, now.Month, now.Day, 20, 22, 24, TimeSpan.Zero));
-        gll.Status.Should().Be(Status.DataValid);
+        gll.Status.Should().Be(Status.Valid);
+    }
+
+    [Test]
+    public void CanParseRmcSentence()
+    {
+        var sentence = "$GPRMC,202225.00,A,4314.72224,N,07956.69578,W,0.060,,090723,,,D*60";
+        var nmea = NmeaSentences.Parse(sentence);
+        nmea.Should().BeOfType<RmcSentence>();
+
+        var now = DateTimeOffset.Now;
+        var rmc = nmea as RmcSentence;
+        rmc.DateTime.Should().Be(new DateTimeOffset(2023, 07, 09, 20, 22, 25, TimeSpan.Zero));
+        rmc.Status.Should().Be(Status.Valid);
+        rmc.Latitude.Value.Should().BeApproximately(43.2453706667, 0.0000001);
+        rmc.Longitude.Value.Should().BeApproximately(-79.9449296667, 0.0000001);
+        rmc.SpeedKnots.Should().Be(0.060);
+    }
+
+    [Test]
+    public void CanParseVtgSentence()
+    {
+        var sentence = "$GPVTG,090.00,T,091.00,M,0.060,N,0.112,K,D*22";
+        var nmea = NmeaSentences.Parse(sentence);
+        nmea.Should().BeOfType<VtgSentence>();
+
+        var vtg = nmea as VtgSentence;
+        vtg.TrueCourse.Value.Should().Be(90.0);
+        vtg.MagneticCourse.Value.Should().Be(91.0);
+        vtg.SpeedKnots.Should().Be(0.060);
+        vtg.SpeedKph.Should().Be(0.112);
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Alteridem.NMEA.Extensions;
 using Alteridem.NMEA.Gis;
 
@@ -17,7 +17,7 @@ public class GllSentence : BaseSentence
         Latitude = new Latitude(Fields[1], Fields[2]);
         Longitude = new Longitude(Fields[3], Fields[4]);
         Time = Fields[5].ParseAsUtcTime();
-        Status = Fields[6].ToLowerInvariant() == "a" ? Status.DataValid : Status.DataInvalid;
+        Status = Fields[6].ToLowerInvariant() == "a" ? Status.Valid : Status.Invalid;
     }
 
     public override string Description => "Geographic Position - Latitude/Longitude";
@@ -26,4 +26,6 @@ public class GllSentence : BaseSentence
     public Longitude Longitude { get; }
     public DateTimeOffset Time { get; }
     public Status Status { get; }
+
+    public override string ToString() => $"GLL: {Latitude}, {Longitude}, {Time}, {Status}";
 }
